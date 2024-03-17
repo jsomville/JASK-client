@@ -13,6 +13,7 @@ from .spaceport import Spaceport_Scene
 from .space import Space_Scene
 from .warp import Warp_Scene
 from .die import Die_Scene
+from .new_character import New_character_Scene
 
 class app:
     def __init__(self):
@@ -72,6 +73,9 @@ class app:
 
         die_scene = Die_Scene()
         self.add_scene(die_scene)
+
+        new_character_Scene = New_character_Scene()
+        self.add_scene(new_character_Scene)
 
         self.active_scene = self.scenes["Login"]
         #******

@@ -75,6 +75,7 @@ class Character_Selection_Scene(Scene2):
             if hasattr(event, "ui_element"):
                 if event.ui_element == self.btn_new:
                     print("Clicked on New ")
+                    self.fire_goto_event("New Character")
                 if event.ui_element == self.btn_select:
                     print("Clicked on Select")
 
