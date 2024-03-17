@@ -1,11 +1,11 @@
 import pygame
 import pygame_gui
 
-from pygame_framework.Scene2 import Scene2
+from pygame_framework.Scene import Scene
 from pygame_framework.Colors import Colors
 from pygame_framework.Util import Util
 
-class Job_Scene(Scene2):
+class Job_Scene(Scene):
     def on_init(self):
         self.name = "Job"
 
