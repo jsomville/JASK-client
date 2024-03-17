@@ -107,7 +107,7 @@ class app:
                     if next_scene in self.scenes:
                         self.active_scene = self.scenes[event.__dict__["goto"]]
                     else:
-                        raise Exception('Scene' + event.__dict__["goto"] + " not found")
+                        raise Exception('Scene: ' + event.__dict__["goto"] + " not found")
                 else:
                     print("Next scene is None so quit")
                     self._running = False
