@@ -5,8 +5,10 @@ from pygame_framework.Scene import Scene
 from pygame_framework.Colors import Colors
 from pygame_framework.Util import Util
 
+from .character import Character
+
 class Character_Selection_Scene(Scene):
-    def on_init(self):
+    def on_init(self, world):
         self.name = "Character Selection"
 
         #Redefinie Background color
@@ -20,6 +22,9 @@ class Character_Selection_Scene(Scene):
     
         #Create UI
         self.create_gui()
+        
+        #reference to the world
+        self.world = world
 
         #Last step of intitialisation
         self.inited = True
@@ -78,8 +83,14 @@ class Character_Selection_Scene(Scene):
                     self.fire_goto_event("New Character")
                 if event.ui_element == self.btn_select:
                     print("Clicked on Select")
-
+                    self.select_character()
                     self.fire_goto_event("Station")
+                    
+    def select_character(self):
+        character = Character()     
+        
+        self.world.set_character(character)
+        
         
     def on_loop(self):
         time_delta = pygame.time.Clock().tick()/1000.0

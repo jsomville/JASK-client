@@ -8,7 +8,7 @@ from pygame_framework.Colors import Colors
 from pygame_framework.Util import Util
 
 class Login_Scene(Scene):
-    def on_init(self):
+    def on_init(self, world):
         self.name = "Login"
 
         #Redefinie Background color
@@ -23,6 +23,9 @@ class Login_Scene(Scene):
 
         #Create the GUI
         self.create_gui()
+        
+        #reference to the world
+        self.world = world
 
         #Last step of intitialisation
         self.inited = True
@@ -31,8 +34,8 @@ class Login_Scene(Scene):
 
         x = 200
         y = 120
-        textbox_width = 200
-        default_height = 30
+        textbox_width = 220
+        default_height = 35
         label_width = 80
         column_space = label_width + 10
 

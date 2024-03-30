@@ -8,7 +8,7 @@ from pygame_framework.Util import Util
 from pygame_framework.UI_Position import UI_Position
 
 class Map_Scene(Scene):
-    def on_init(self):
+    def on_init(self, world):
         self.name = "Map"
 
         #Redefinie Background color
@@ -24,10 +24,9 @@ class Map_Scene(Scene):
     
         #Create UI
         self.create_gui()
-        
-        #Load Map
-        self.read_map()
-        self.process_map()
+
+        #reference to the world
+        self.world = world
 
         #Last step of intitialisation
         self.inited = True
@@ -43,51 +42,19 @@ class Map_Scene(Scene):
         text = "Return"
         id = "#btn_return"
         self.btn_return = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
-
-
-    def read_map(self):
-        with open('src/data/map.json') as file :
-            map = json.load(file)
-            
-            self.solarSystems = map["SolarSystems"]
-            
-    
-    def process_map(self):
-        self.map = dict()
-        lanes=list()
-        for ss in self.solarSystems:
-            name = ss["name"]
-            p_temp = ss["position"]
-            
-            #Give it an offset
-            x = p_temp[0] + 800
-            y = p_temp[1] + 100
-            ss["screenPosition"] = (x, y)
-            
-            #Create Map
-            self.map[name] = ss["screenPosition"]
-            
-            #Process links
-            for link in ss["links"]:
-                #In alphabetical order
-                lane = (name, link)
-                if name < link:
-                    lane = (link, name)
-                lanes.append(lane)
-            
-        #Remove duplicates        
-        self.lanes = list(dict.fromkeys(lanes))
+        
         
     def draw_map(self, surface):
         #Draw stars
-        for lane in self.lanes:
+        
+        for lane in self.world.lanes:
             color = Colors.WHITE
-            start = self.map[lane[0]]
-            end = self.map[lane[1]]
+            start = self.world.map[lane[0]]
+            end = self.world.map[lane[1]]
             pygame.draw.line(surface, color, start, end, 1)
         
         #Draw Star systems
-        for ss in self.solarSystems:
+        for ss in self.world.solarSystems:
             #Draw Star
             color = self.get_star_Color(ss["type"])
             radius = 5

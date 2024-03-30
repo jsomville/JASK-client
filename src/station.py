@@ -6,7 +6,7 @@ from pygame_framework.Colors import Colors
 from pygame_framework.Util import Util
 
 class Station_Scene(Scene):
-    def on_init(self):
+    def on_init(self, world):
         self.name = "Station"
 
         #Redefinie Background color
@@ -20,6 +20,9 @@ class Station_Scene(Scene):
     
         #Create UI
         self.create_gui()
+        
+        #reference to the world
+        self.world = world
 
         #Last step of intitialisation
         self.inited = True

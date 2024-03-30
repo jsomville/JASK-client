@@ -15,6 +15,8 @@ from .warp import Warp_Scene
 from .die import Die_Scene
 from .new_character import New_character_Scene
 
+from .world import World
+
 class app:
     def __init__(self):
         self.windowWidth = 800
@@ -25,13 +27,15 @@ class app:
         self.active_scene = None
 
         self.title = "JASK - Client"
-
+        
+        self.world = World()
     
     def on_init(self):
 
         #pygame initialisation
         pygame.init()
-        self._display_surf = pygame.display.set_mode((self.windowWidth, self.windowHeight))
+        
+        self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])
         self.frame_per_sec = pygame.time.Clock()
 
         #Set the window caption
@@ -85,7 +89,7 @@ class app:
 
     def add_scene(self, aScene):
         aScene.size = self.SCREEN_SIZE
-        aScene.on_init()
+        aScene.on_init(self.world)
 
         self.scenes[aScene.name] = aScene
 
