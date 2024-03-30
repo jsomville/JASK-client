@@ -8,7 +8,7 @@ Goal would be to propose a MMO version of Endless sky supported by the community
 
 There is also a server project that you can find here : https://github.com/jsomville/JASK-Server
 
-#Pre-requisites
+# Pre-requisites
 Install the requirements.txt
 
 The concept of scenes is also implemented using the pygame_framework library 
@@ -23,10 +23,10 @@ JASK-client
  | - requirements.txt
  | - README.md
 
-#How to run the client
+# How to run the client
 Launch the run.py file.
 
-#How to contribute
+# How to contribute
 Your help is very much appreciated.
 Do your best at understanding the code.
 Ask around for what to do
