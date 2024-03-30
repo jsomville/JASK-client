@@ -1,0 +1,373 @@
+{
+  "SolarSystems": [
+    {
+      "name": "Sol",
+      "type":"G",
+      "position": [
+        -400,
+        100
+      ],
+      "governement": "Republic",
+      "links": [
+        "Alpha Centauri",
+        "Altair",
+        "Caph",
+        "Denebola",
+        "Sirius",
+        "Vega"
+      ],
+      "objects": [
+        {
+          "name": "Sol",
+          "sprite": "star/g0",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "Mercury",
+          "sprite": "planet/mercury",
+          "distance": 289,
+          "period": 60
+        },
+        {
+          "name": "Venus",
+          "sprite": "planet/venus",
+          "distance": 533,
+          "period": 150
+        },
+        {
+          "name": "Earth",
+          "sprite": "planet/earth",
+          "distance": 965,
+          "period": 150
+        },
+        {
+          "name": "Mars",
+          "sprite": "planet/mars",
+          "distance": 1471,
+          "period": 687
+        },
+        {
+          "name": "Jupiter",
+          "sprite": "planet/jupiter",
+          "distance": 3339,
+          "period": 2348
+        },
+        {
+          "name": "Saturn",
+          "sprite": "planet/saturn",
+          "distance": 5562,
+          "period": 5048
+        },
+        {
+          "name": "Uranus",
+          "sprite": "planet/uranus",
+          "distance": 10373,
+          "period": 12858
+        },
+        {
+          "name": "Neptune",
+          "sprite": "planet/neptune",
+          "distance": 15730,
+          "period": 24012
+        }
+      ]
+    },
+    {
+      "name": "Alpha Centauri",
+      "type":"G",
+      "position": [
+        -429,
+        125
+      ],
+      "governement": "Republic",
+      "links": [
+        "Sol"
+      ],
+      "objects": [
+        {
+          "name": "Alpha Centauri",
+          "sprite": "star/g3",
+          "distance": 38,
+          "period": 10
+        },
+        {
+          "name": "",
+          "sprite": "planet/desert2",
+          "distance": 346,
+          "period": 74
+        },
+        {
+          "name": "",
+          "sprite": "planet/oberon",
+          "distance": 749,
+          "period": 237
+        },
+        {
+          "name": "",
+          "sprite": "planet/forest1",
+          "distance": 976,
+          "period": 353
+        },
+        {
+          "name": "",
+          "sprite": "planet/rock15-b",
+          "distance": 1718,
+          "period": 825
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas13",
+          "distance": 4080,
+          "period": 3022
+        }
+      ]
+    },
+    {
+      "name": "Altair",
+      "type":"G",
+      "position": [
+        -357,
+        161
+      ],
+      "governement": "Republic",
+      "links": [
+        "Sol",
+        "Vega"
+      ],
+      "objects": [
+        {
+          "name": "Altair",
+          "sprite": "star/g5",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "",
+          "sprite": "planet/water0",
+          "distance": 242,
+          "period": 47
+        },
+        {
+          "name": "",
+          "sprite": "planet/desert4",
+          "distance": 468,
+          "period": 128
+        },
+        {
+          "name": "",
+          "sprite": "planet/rock13-b",
+          "distance": 698,
+          "period": 234
+        },
+        {
+          "name": "",
+          "sprite": "planet/cloud8",
+          "distance": 1260,
+          "period": 567
+        },
+        {
+          "name": "",
+          "sprite": "planet/europa",
+          "distance": 223,
+          "period": 1329
+        }
+      ]
+    },
+    {
+      "name": "Caph",
+      "type":"G",
+      "position": [
+        -295,
+        77
+      ],
+      "governement": "Syndicate",
+      "links": [
+        "Sol"
+      ],
+      "objects": [
+        {
+          "name": "Caph",
+          "sprite": "star/g3",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "",
+          "sprite": "planet/desert0",
+          "distance": 160,
+          "period": 30
+        },
+        {
+          "name": "",
+          "sprite": "planet/lava3",
+          "distance": 479,
+          "period": 158
+        },
+        {
+          "name": "",
+          "sprite": "planet/forest2",
+          "distance": 885,
+          "period": 398
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas6",
+          "distance": 1666,
+          "period": 1028
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas10",
+          "distance": 2434,
+          "period": 1816
+        }
+      ]
+    },
+    {
+      "name": "Denebola",
+      "type":"K",
+      "position": [
+        -478,
+        70
+      ],
+      "governement": "Republic",
+      "links": [
+        "Sol"
+      ],
+      "objects": [
+        {
+          "name": "Denebola",
+          "sprite": "star/k5",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "",
+          "sprite": "planet/cloud3-b",
+          "distance": 360,
+          "period": 115
+        },
+        {
+          "name": "Geyser",
+          "sprite": "planet/ice2",
+          "distance": 628,
+          "period": 266
+        },
+        {
+          "name": "",
+          "sprite": "planet/rock0-b",
+          "distance": 1051,
+          "period": 575
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas1-b",
+          "distance": 1550,
+          "period": 1031
+        },
+        {
+          "name": "",
+          "sprite": "planet/io-b",
+          "distance": 2927,
+          "period": 2677
+        }
+      ]
+    },
+    {
+      "name": "Sirius",
+      "type":"F",
+      "position": [
+        -378,
+        44
+      ],
+      "governement": "Republic",
+      "links": [
+        "Sol"
+      ],
+      "objects": [
+        {
+          "name": "Sirius",
+          "sprite": "star/f5",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "",
+          "sprite": "planet/lava4",
+          "distance": 338,
+          "period": 57
+        },
+        {
+          "name": "",
+          "sprite": "planet/rock6-b",
+          "distance": 640,
+          "period": 150
+        },
+        {
+          "name": "",
+          "sprite": "planet/dust3",
+          "distance": 1158,
+          "period": 366
+        },
+        {
+          "name": "",
+          "sprite": "planet/dust4",
+          "distance": 1807,
+          "period": 714
+        },
+        {
+          "name": "",
+          "sprite": "planet/tethys",
+          "distance": 2162,
+          "period": 935
+        }
+      ]
+    },
+    {
+      "name": "Vega",
+      "type":"G",
+      "position": [
+        -402,
+        182
+      ],
+      "governement": "Republic",
+      "links": [
+        "Sol",
+        "Altair"
+      ],
+      "objects": [
+        {
+          "name": "Vega",
+          "sprite": "star/g0",
+          "distance": 0,
+          "period": 0
+        },
+        {
+          "name": "",
+          "sprite": "planet/rock12",
+          "distance": 314,
+          "period": 58
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas12-b",
+          "distance": 714,
+          "period": 200
+        },
+        {
+          "name": "",
+          "sprite": "planet/cloud3",
+          "distance": 1359,
+          "period": 526
+        },
+        {
+          "name": "",
+          "sprite": "planet/gas8",
+          "distance": 2981,
+          "period": 1710
+        }
+      ]
+    }
+  ]
+}
