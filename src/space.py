@@ -1,5 +1,6 @@
 import pygame
 import pygame_gui
+import math
 
 from pygame_framework.Scene import Scene
 from pygame_framework.Colors import Colors
@@ -15,6 +16,7 @@ class Space_Scene(Scene):
 
         self.title = "This is the void of space"
         self.title_font = pygame.font.SysFont("Arial", 24)
+        self.helper_font = pygame.font.SysFont("Arial", 10)
 
         #Pygame GUI 
         self.manager = pygame_gui.UIManager(self.size)
@@ -24,6 +26,9 @@ class Space_Scene(Scene):
         
         #reference to the world
         self.world = world
+        
+        self.show_mini_map = True
+        self.show_helper = True
 
         #Last step of intitialisation
         self.inited = True
@@ -88,15 +93,17 @@ class Space_Scene(Scene):
                 self.world.ship.power_up()
             elif event.key == pygame.K_DOWN:
                 self.world.ship.power_down()
-            elif event.key == pygame.K_r or event.key == pygame.K_R:
+            elif event.key == pygame.K_r:
                 self.world.ship.reset()
-            elif event.key == pygame.K_s or event.key == pygame.K_S:
+            elif event.key == pygame.K_s:
                 self.world.ship.shoot()
                 
         
     def on_loop(self):
         time_delta = pygame.time.Clock().tick()/1000.0
         self.manager.update(time_delta)
+        
+        self.world.ship.move()
 
     def on_render(self, surface):
         surface.fill(self.BACKGROUND)
@@ -107,8 +114,12 @@ class Space_Scene(Scene):
         #Draw Map
         self.draw_solar_system(surface)
         
-        #Draw Radar
-        self.draw_radar(surface)
+        #Draw Mini Map
+        if self.show_mini_map:
+            self.draw_mini_map(surface)
+        
+        if self.show_helper:
+            self.draw_helpers(surface)
         
         #Draw Other ships
 
@@ -124,8 +135,92 @@ class Space_Scene(Scene):
     def draw_solar_system(self, surface):
         current_ss = self.world.get_current_solar_system()
         for planet in current_ss["objects"]:
-            print(planet)
+            pass
 
-    def draw_radar(self, surface):
-        pass
+    def draw_mini_map(self, surface):
+        #TO FIX
+        top = (450,300)
+        radius_max = 140
+        PLANET_COLOR = Colors.BLACK
+        ORBIT_COLOR = Colors.GRAY
+        MINI_MAP_COLOR = Colors.DARK_GRAY
+        PLAYER_COLOR = Colors.RED
+        PLANET_RADIUS = 2
+        PLAYER_RADIUS = 2
+        
+        size = (radius_max * 2 + 4 ,radius_max * 2 + 4)
+        rect = pygame.Rect(top, size)
+        pygame.draw.rect(surface, MINI_MAP_COLOR, rect)
+        
+        current_ss = self.world.get_current_solar_system()
+        center = rect.center
+        radius = 2
+        for planet in current_ss["objects"]:
+            radius = planet["relative_distance"] * (radius_max)
+            
+            #Draw Planet Orbit
+            pygame.draw.circle(surface, ORBIT_COLOR, center, radius, width=1)
+            
+            #Draw Planet
+            rad_angle = math.radians(planet["angle"])
+            x = center[0] + radius * math.cos(rad_angle) + PLANET_RADIUS
+            y = center[1] + radius * math.sin(rad_angle) + PLANET_RADIUS
+            pygame.draw.circle(surface, PLANET_COLOR, (x,y), PLANET_RADIUS)
+            
+        #Draw my Position
+        radius = self.world.ship.position_radius / current_ss["max_distance"]
+        angle = self.world.ship.position_angle
+        x = center[0] + radius * math.cos(angle) + PLAYER_RADIUS
+        y = center[1] + radius * math.sin(angle) + PLAYER_RADIUS
+        pygame.draw.circle(surface, PLAYER_COLOR, (x,y), PLAYER_RADIUS)
+            
+            
+    def draw_helpers(self, surface):
+        #Values
+        position = self.world.ship.position
+        rounded_pos = round(position[0]), round(position[1])
+        
+        x = 10
+        y = 10
+        
+        #Draw Position
+        text = f"Position : {rounded_pos}"
+        self.draw_helper(surface, text, (x,y))
+        
+        #Draw Speed
+        y += 12
+        text = f"Speed : {self.world.ship.speed}"
+        self.draw_helper(surface, text, (x,y))
+        
+        #Draw Angle
+        y += 12
+        text = f"Angle : {self.world.ship.angle}"
+        self.draw_helper(surface, text, (x,y))
+        
+        #Draw Position Angle
+        y += 12
+        text = f"Position Angle : {self.world.ship.position_angle}"
+        self.draw_helper(surface, text, (x,y))
+        
+        #Draw Position Radius
+        y += 12
+        text = f"Radius : {self.world.ship.position_radius}"
+        self.draw_helper(surface, text, (x,y))
+        
+        #Draw Max Radius
+        y += 12
+        max_distance = self.world.get_current_solar_system()["max_distance"]
+        text = f"Radius : {max_distance}"
+        self.draw_helper(surface, text, (x,y))
+        
 
+        
+
+    def draw_helper(self, surface, text, position):
+        img = self.helper_font.render(text, True, Colors.WHITE)
+        text_rect = img.get_rect()
+        text_rect.x = position[0]
+        text_rect.y = position[1]
+        surface.blit(img, text_rect)
+        
+        

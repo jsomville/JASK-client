@@ -1,8 +1,9 @@
 import pygame
+import math
 
 class Ship(pygame.sprite.Sprite):
     def __init__(self, image):
-        self.pos = (100,100)
+        self.pos = (0,0) #Default Position relative to screen
         
         self.speed = 0
         self.angle = 0
@@ -13,9 +14,14 @@ class Ship(pygame.sprite.Sprite):
         
         #Ship Specs
         self.max_speed = 50
-        self.speed_increment = 1
+        self.speed_increment = 10
         self.turn_increment = 5
         self.shield = 100
+        
+        #Player Position relative to map center
+        self.position = (0,0)
+        self.update_position()
+
         
     def turn_left(self):
         self.turn(-self.turn_increment)
@@ -30,12 +36,13 @@ class Ship(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         
     def power_up(self):
-        self.speed(self.speed_increment)
+        val = self.speed_increment
+        self.set_speed(val)
     
     def power_down(self):
-        self.speed(-self.speed_increment)
+        self.set_speed(-self.speed_increment)
         
-    def speed(self, amount):
+    def set_speed(self, amount):
         self.speed += amount
         
         if self.speed < 0:
@@ -46,6 +53,31 @@ class Ship(pygame.sprite.Sprite):
     def reset(self):
         self.angle = 0
         self.speed = 0
+        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        
+        self.position = (0,0)
+        self.update_position()
     
     def shoot(self):
         pass
+
+    def move(self):
+        pos = self.position
+        rad_angle = math.radians(self.angle)
+        
+        x = self.position[0] + self.speed * math.cos(rad_angle)
+        y = self.position[1] + self.speed * math.sin(rad_angle)
+        
+        self.position = (x,y)
+    
+        self.update_position()
+    
+    def update_position(self):
+        dist_from_sun = math.dist((0,0), self.position)
+        angle = 0
+        if dist_from_sun > 0:
+            angle = math.asin(self.position[1] / dist_from_sun)
+            #angle = math.degrees(rad_angle)
+            
+        self.position_angle = angle
+        self.position_radius = dist_from_sun

@@ -38,10 +38,6 @@ class World:
             y = p_temp[1] + 100
             ss["screenPosition"] = (x, y)
             
-            #Create Map
-            self.map[name] = ss["screenPosition"]
-            self.map_ss[name] = ss
-            
             #Process links
             for link in ss["links"]:
                 #In alphabetical order
@@ -49,6 +45,26 @@ class World:
                 if name < link:
                     lane = (link, name)
                 lanes.append(lane)
+            
+            #Get max Distance
+            max = 0
+            for planet in ss["objects"]:
+                if planet["distance"] > max:
+                    max = planet["distance"]
+            ss["max_distance"] = max
+                    
+            #set planet attributes
+            for planet in ss["objects"]:
+                #Relative distance in %
+                planet["relative_distance"] = planet["distance"] / max
+                
+                #Position in angle
+                planet["angle"] = planet["period"] % 360
+            
+            #Create Map
+            self.map[name] = ss["screenPosition"]
+            self.map_ss[name] = ss
+
             
         #Remove duplicates        
         self.lanes = list(dict.fromkeys(lanes))
