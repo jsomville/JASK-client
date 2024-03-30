@@ -34,5 +34,8 @@ Ask around for what to do
 Goal # 1 - MVP
  - Login / Logout
  - Create 1 Character (basic)
- - Show Map
- - 
+ - Screen sequence (see Screen.odg --> Open Office)
+ - Show the Map
+ - Go to Space
+ - Dock at PLanet / Station
+
