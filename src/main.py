@@ -39,7 +39,9 @@ class app:
         self.frame_per_sec = pygame.time.Clock()
 
         #Set the window caption
+        icon = pygame.image.load('src/data/images/icon_48x48.png').convert_alpha()
         pygame.display.set_caption(self.title)
+        pygame.display.set_icon(icon)
 
         self.SCREEN_SIZE = (self.windowWidth, self.windowHeight)
 

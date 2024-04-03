@@ -8,13 +8,12 @@ class Ship(pygame.sprite.Sprite):
         self.speed = 0
         self.angle = 0
         self.original_image = image
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
-        self.rect = self.image.get_rect()
+        self.update_image()
         self.rect.center = self.pos
         
         #Ship Specs
-        self.max_speed = 50
-        self.speed_increment = 10
+        self.max_speed = 20
+        self.speed_increment = 2
         self.turn_increment = 5
         self.shield = 100
         
@@ -24,23 +23,33 @@ class Ship(pygame.sprite.Sprite):
 
         
     def turn_left(self):
-        self.turn(-self.turn_increment)
-    
-    def turn_right(self):
         self.turn(self.turn_increment)
     
+    
+    def turn_right(self):
+        self.turn(-self.turn_increment)
+    
+    
+    def update_image(self):
+        self.image = pygame.transform.rotate(self.original_image, self.angle + 90)
+        self.rect = self.image.get_rect()
+        
+        
     def turn(self, amount):
         self.angle += amount
         
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
-        self.rect = self.image.get_rect()
+        self.angle = self.angle % 360
+        self.update_image()
+        
         
     def power_up(self):
         val = self.speed_increment
         self.set_speed(val)
     
+    
     def power_down(self):
         self.set_speed(-self.speed_increment)
+      
         
     def set_speed(self, amount):
         self.speed += amount
@@ -50,34 +59,39 @@ class Ship(pygame.sprite.Sprite):
         elif self.speed > self.max_speed:
             self.speed = self.max_speed
     
+    
     def reset(self):
         self.angle = 0
         self.speed = 0
-        self.image = pygame.transform.rotate(self.original_image, self.angle)
+        
+        self.update_image()
         
         self.position = (0,0)
         self.update_position()
     
+    
     def shoot(self):
         pass
+
 
     def move(self):
         pos = self.position
         rad_angle = math.radians(self.angle)
         
-        x = self.position[0] + self.speed * math.cos(rad_angle)
-        y = self.position[1] + self.speed * math.sin(rad_angle)
+        x = self.position[0] - self.speed * math.cos(rad_angle)
+        y = self.position[1] + self.speed * math.sin(rad_angle) # (-) because of coordinate inversion
         
         self.position = (x,y)
     
         self.update_position()
     
+    
     def update_position(self):
         dist_from_sun = math.dist((0,0), self.position)
         angle = 0
         if dist_from_sun > 0:
-            angle = math.asin(self.position[1] / dist_from_sun)
-            #angle = math.degrees(rad_angle)
+            rad_angle = math.atan2(self.position[1], self.position[0])
+            angle = round(math.degrees(rad_angle))
             
         self.position_angle = angle
         self.position_radius = dist_from_sun

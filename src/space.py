@@ -168,10 +168,12 @@ class Space_Scene(Scene):
             pygame.draw.circle(surface, PLANET_COLOR, (x,y), PLANET_RADIUS)
             
         #Draw my Position
-        radius = self.world.ship.position_radius / current_ss["max_distance"]
+        rel_radius = self.world.ship.position_radius / current_ss["max_distance"]
+        radius = rel_radius * radius_max
         angle = self.world.ship.position_angle
-        x = center[0] + radius * math.cos(angle) + PLAYER_RADIUS
-        y = center[1] + radius * math.sin(angle) + PLAYER_RADIUS
+        rad_angle = math.radians(angle)
+        x = center[0] + radius * math.cos(rad_angle) - PLAYER_RADIUS
+        y = center[1] + radius * math.sin(rad_angle) - PLAYER_RADIUS
         pygame.draw.circle(surface, PLAYER_COLOR, (x,y), PLAYER_RADIUS)
             
             
@@ -210,11 +212,9 @@ class Space_Scene(Scene):
         #Draw Max Radius
         y += 12
         max_distance = self.world.get_current_solar_system()["max_distance"]
-        text = f"Radius : {max_distance}"
+        text = f"Max Distance: {max_distance}"
         self.draw_helper(surface, text, (x,y))
-        
 
-        
 
     def draw_helper(self, surface, text, position):
         img = self.helper_font.render(text, True, Colors.WHITE)

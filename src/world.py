@@ -10,6 +10,7 @@ class World:
         self.load_map()
         self.process_map()
     
+    
     def set_character(self, character):
         self.character = character
         
@@ -19,11 +20,13 @@ class World:
         #Set the ship
         self.ship = Ship(image)
     
+    
     def load_map(self):
         with open('src/data/map.json') as file :
             map = json.load(file)
             
             self.solarSystems = map["SolarSystems"]
+    
     
     def process_map(self):
         self.map = dict()
@@ -64,7 +67,6 @@ class World:
             #Create Map
             self.map[name] = ss["screenPosition"]
             self.map_ss[name] = ss
-
             
         #Remove duplicates        
         self.lanes = list(dict.fromkeys(lanes))
