@@ -10,7 +10,7 @@ from .ship import Ship
 from .camera import Camera
 from .solar_system_element import SolarSystemElement
 
-MAP_FILE = 'src/data/new_map.json'
+MAP_FILE = 'src/data/map.json'
 class World:
     def __init__(self):
         #Load Images
@@ -159,6 +159,7 @@ class World:
             image = self.asteroids_images[asteroid_name]
             asteroid = SolarSystemElement(pos, self.camera, image)
             self.solar_system_elements.append(asteroid)
+    
     
     def get_star_Color(self, type):
         color = Colors.BLACK
