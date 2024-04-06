@@ -21,7 +21,7 @@ class app:
     def __init__(self):
         self.windowWidth = 1400
         self.windowHeight = 800
-        self.FPS = 60
+        self.FPS = 40
 
         self.scenes = dict()
         self.active_scene = None

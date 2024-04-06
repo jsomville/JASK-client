@@ -33,6 +33,8 @@ class Space_Scene(Scene):
         
         self.show_mini_map = True
         self.show_helper = True
+        self.show_orbit = True
+        self.show_radar = True
 
         #Last step of intitialisation
         self.inited = True
@@ -89,6 +91,12 @@ class Space_Scene(Scene):
         id = "#btn_radar"
         self.btn_radar = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
         
+        #Toggle Orbit
+        y = y + 40
+        rect = pygame.Rect(x, y, button_width, button_height)
+        text = "Orbit"
+        id = "#btn_orbit"
+        self.btn_orbit = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
 
     def on_event(self, event):
 
@@ -111,7 +119,14 @@ class Space_Scene(Scene):
 
                     self.fire_goto_event("Die")
                 elif event.ui_element == self.btn_mini_map:
+                    #Toggle Mini map
                     self.show_mini_map = not self.show_mini_map
+                elif event.ui_element == self.btn_orbit:
+                    #Toggle Planet Orbit
+                    self.show_orbit = not self.show_orbit
+                elif event.ui_element == self.btn_radar:
+                    #Toggle Radar
+                    self.show_radar = not self.show_radar
                     
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
@@ -134,6 +149,7 @@ class Space_Scene(Scene):
             self.world.ship.power_down()
     
     def on_loop(self):
+        #For UI manager Timers
         time_delta = pygame.time.Clock().tick()/1000.0
         self.manager.update(time_delta)
         
@@ -155,11 +171,15 @@ class Space_Scene(Scene):
         surface.fill(self.BACKGROUND)
 
         #Draw The map & objects
-        self.world.draw_map(surface)
+        self.world.draw_map(surface, self.show_orbit)
         
         #Draw Mini Map
         if self.show_mini_map:
             self.draw_mini_map(surface)
+        
+        #Draw Radar
+        if self.show_radar:
+            self.draw_radar(surface)
         
         #Draw Text Helpers
         if self.show_helper:
@@ -208,7 +228,9 @@ class Space_Scene(Scene):
         x = center[0] + radius * math.cos(rad_angle) - PLAYER_RADIUS
         y = center[1] + radius * math.sin(rad_angle) - PLAYER_RADIUS
         pygame.draw.circle(surface, PLAYER_COLOR, (x,y), PLAYER_RADIUS)
-            
+    
+    def draw_radar(self, surface):
+        pass 
             
     def draw_helpers(self, surface):
         #Values

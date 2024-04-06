@@ -11,6 +11,9 @@ from .camera import Camera
 from .solar_system_element import SolarSystemElement
 
 MAP_FILE = 'src/data/map.json'
+
+ORBIT_COLOR = Colors.WHITE
+
 class World:
     def __init__(self):
         #Load Images
@@ -128,13 +131,15 @@ class World:
         
         map_size = ss["map_size"]
         
+        #Handle Map Center
+        ss["center"] = (map_size[0]/2, map_size[1]/2)
+        
         #Add sun
         pos = (map_size[0] / 2, map_size[1]/2)
         sprite_name = ss["sprite"]
         image= self.stars_images[sprite_name]
         sun = SolarSystemElement(pos, self.camera, image)
         self.solar_system_elements.append(sun)
-        print(f"sun : {pos}")
         
         #Loop trough objects
         for object in ss["objects"]:
@@ -147,7 +152,6 @@ class World:
                 planet = SolarSystemElement(pos, self.camera, image)
                 planet.name = object["name"]
                 self.solar_system_elements.append(planet)
-                print(f"planet : {planet.name} pos :{pos}")
         
         #Add random asteroids
         offset = 300
@@ -182,25 +186,35 @@ class World:
         return color
     
     
-    def draw_map(self, surface: pygame.Surface):
+    def draw_map(self, surface: pygame.Surface, show_orbit:bool):
+        #Handle Screen position
         x = self.ship.position[0] - surface.get_rect().centerx
         y = self.ship.position[1] - surface.get_rect().centery
-        pos = (x,y)
+        offset = (x,y)
         
         #Draw Orbit
-        ss = self.get_current_solar_system()
-        ORBIT_COLOR = Colors.WHITE
-        centerx = 15730 - pos[0]
-        centery = 15730 - pos[1]
-        for planet in ss["objects"]:
-            radius = planet["distance"] 
-            pygame.draw.circle(surface, ORBIT_COLOR, (centerx, centery), radius, width=1)
-              
+        if show_orbit:
+            self.draw_orbit(surface, offset)
+        
         #Draw SS Elements
-        self.camera.custom_draw(surface, pos)
+        self.camera.custom_draw(surface, offset)
         
         #Draw My ship
         self.draw_my_ship(surface)
+    
+    
+    def draw_orbit(self, surface, offset):
+        ss = self.get_current_solar_system()
+        
+        #centerx = 15730 - offset[0]
+        #centery = 15730 - offset[1]
+        
+        centerx = ss["center"][0] - offset[0]
+        centery = ss["center"][1] - offset[1]
+        
+        for planet in ss["objects"]:
+            radius = planet["distance"] 
+            pygame.draw.circle(surface, ORBIT_COLOR, (centerx, centery), radius, width=1)
     
     
     def draw_my_ship(self, surface):

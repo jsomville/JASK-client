@@ -8,9 +8,9 @@ class Camera(pygame.sprite.Group):
         
         #self.zoom = 1
     
-    def custom_draw(self, surface: pygame.Surface, pos):
+    def custom_draw(self, surface: pygame.Surface, offset):
         
-        self.offset = pos
+        self.offset = offset
         
         for sprite in self.sprites():
             x = sprite.rect.centerx - self.offset[0]
