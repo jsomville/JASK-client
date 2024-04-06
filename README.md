@@ -14,14 +14,14 @@ Install the requirements.txt
 The concept of scenes is also implemented using the pygame_framework library 
 Refer to https://github.com/jsomville/pygame_framework
 This library is not yet available trough pip to install and needs to be copied next to the src folder
-JASK-client
- | - pygame_Framework
-    |- ...
- | - src
-    |- ...
- | - run.py
- | - requirements.txt
- | - README.md
+JASK-client.
+>  | pygame_Framework
+>     |- ...
+>  | - src
+>     |- ...
+>  | - run.py
+>  | - requirements.txt
+>  | - README.md
 
 # How to run the client
 Launch the run.py file.
