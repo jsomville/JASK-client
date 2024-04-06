@@ -32,11 +32,11 @@ class World:
         
         #Set the ship
         self.ship = Ship(image)
-        x = 15730 /2
-        y = 15730 /2
+        x = 15730
+        y = 15730
         pos = (x,y)
         self.ship.set_position(pos)
-    
+        
     
     def load_map_images(self):
         #Load stars
@@ -150,16 +150,17 @@ class World:
                 print(f"planet : {planet.name} pos :{pos}")
         
         #Add random asteroids
+        offset = 300
         for i in range(1000):
-            x = random.randint(0, map_size[0])
-            y = random.randint(0, map_size[1])
-            pos = (x,y)
+            x = random.randint(offset, map_size[0] - offset)
+            y = random.randint(offset, map_size[1] - offset)
+            pos = (x, y)
             asteroid_type = random.randint(0, len(self.asteroids_list)-1)
             asteroid_name = self.asteroids_list[asteroid_type]
             image = self.asteroids_images[asteroid_name]
             asteroid = SolarSystemElement(pos, self.camera, image)
             self.solar_system_elements.append(asteroid)
-    
+        
     
     def get_star_Color(self, type):
         color = Colors.BLACK
@@ -181,9 +182,20 @@ class World:
         return color
     
     
-    def draw_map(self, surface):
-        pos = self.ship.position
+    def draw_map(self, surface: pygame.Surface):
+        x = self.ship.position[0] - surface.get_rect().centerx
+        y = self.ship.position[1] - surface.get_rect().centery
+        pos = (x,y)
         
+        #Draw Orbit
+        ss = self.get_current_solar_system()
+        ORBIT_COLOR = Colors.WHITE
+        centerx = 15730 - pos[0]
+        centery = 15730 - pos[1]
+        for planet in ss["objects"]:
+            radius = planet["distance"] 
+            pygame.draw.circle(surface, ORBIT_COLOR, (centerx, centery), radius, width=1)
+              
         #Draw SS Elements
         self.camera.custom_draw(surface, pos)
         

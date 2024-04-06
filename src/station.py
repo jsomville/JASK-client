@@ -97,9 +97,14 @@ class Station_Scene(Scene):
         id = "#btn_spaceport"
         self.btn_spaceport = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
 
+
+        #*****
         #Undock
-        x = self.get_posi_from_grid(service_x, service_button_width, spacer_x, 2)
-        y = self.get_posi_from_grid(service_y, service_button_height, spacer_y, 2)
+        x = base_x + container_width - service_button_width
+        y = base_y + image_height + text_height + 2 * (service_button_height + spacer_y) + 2 * spacer_y
+        
+        #x = self.get_posi_from_grid(service_x, service_button_width, spacer_x, 2)
+        #y = self.get_posi_from_grid(service_y, service_button_height, spacer_y, 2)
         rect = pygame.Rect((x,y), (service_button_width, service_button_height))
         text = "Undock"
         id = "#btn_undock"

@@ -16,17 +16,20 @@ class Ship(pygame.sprite.Sprite):
         #Ship Specs
         self.max_speed = 15
         self.speed_increment = 1
-        self.turn_increment = 5
+        self.turn_increment = 1
         self.shield = 100
         
+        #TO FIX
+        self.map_center = (15730, 15730)
+        
         #Player Position relative to map center
-        self.position = (0,0)
+        self.position = self.map_center
         self.update_position()
         
         
     def set_position(self, pos):
-        self.pos = pos
-        
+        self.position = pos
+        print(f"Ship.set_position : {pos}")
         
     def turn_left(self):
         self.turn(self.turn_increment)
@@ -72,7 +75,7 @@ class Ship(pygame.sprite.Sprite):
         
         self.update_image()
         
-        self.position = (0,0)
+        self.position = self.map_center
         self.update_position()
     
     
@@ -92,7 +95,8 @@ class Ship(pygame.sprite.Sprite):
     
     
     def update_position(self):
-        center = (15730, 15730)
+        #TO FIX
+        center = self.map_center
         
         dist_from_sun = math.dist(center, self.position)
         angle = 0

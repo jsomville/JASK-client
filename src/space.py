@@ -25,18 +25,19 @@ class Space_Scene(Scene):
     
         #Create UI
         self.create_gui()
+        self.create_temp_gui()
         
         #reference to the world
         self.world = world
         self.map = None
         
-        self.show_mini_map = False
+        self.show_mini_map = True
         self.show_helper = True
 
         #Last step of intitialisation
         self.inited = True
         
-    def create_gui(self):
+    def create_temp_gui(self):
         button_width = 120
         button_height = 30
         spacer = 10
@@ -67,6 +68,28 @@ class Space_Scene(Scene):
         id = "#btn_warp"
         self.btn_warp = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
 
+    def create_gui(self):
+        button_width = 100
+        button_height = 30
+        base_x = 10
+        base_y = 150
+        
+        #Toggle Mini Map
+        x = base_x
+        y = base_y
+        rect = pygame.Rect(x, y, button_width, button_height)
+        text = "Mini Map"
+        id = "#btn_mini_map"
+        self.btn_mini_map = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
+        
+        #Toggle Radar
+        y = y + 40
+        rect = pygame.Rect(x, y, button_width, button_height)
+        text = "Radar"
+        id = "#btn_radar"
+        self.btn_radar = pygame_gui.elements.UIButton(relative_rect=rect, text=text, manager= self.manager, object_id = id)
+        
+
     def on_event(self, event):
 
         self.manager.process_events(event)
@@ -87,20 +110,29 @@ class Space_Scene(Scene):
                     print("Clicked on Die")
 
                     self.fire_goto_event("Die")
+                elif event.ui_element == self.btn_mini_map:
+                    self.show_mini_map = not self.show_mini_map
+                    
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                self.world.ship.turn_left()
-            elif event.key == pygame.K_RIGHT:
-                self.world.ship.turn_right()
-            elif event.key == pygame.K_UP:
-                self.world.ship.power_up()
-            elif event.key == pygame.K_DOWN:
-                self.world.ship.power_down()
-            elif event.key == pygame.K_r:
+            if event.key == pygame.K_r:
                 self.world.ship.reset()
             elif event.key == pygame.K_s:
-                self.world.ship.shoot()          
+                self.world.ship.shoot()  
         
+
+    
+    def check_pressed_keys(self):
+        #Check key pressed
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            self.world.ship.turn_left()
+        elif keys[pygame.K_RIGHT]:
+            self.world.ship.turn_right()
+        elif keys[pygame.K_UP]:
+            self.world.ship.power_up()
+        elif keys[pygame.K_DOWN]:
+            self.world.ship.power_down()
+    
     def on_loop(self):
         time_delta = pygame.time.Clock().tick()/1000.0
         self.manager.update(time_delta)
@@ -112,6 +144,10 @@ class Space_Scene(Scene):
             #Proces Map
             self.world.process_current_map()
         
+        #Handle Keys 
+        self.check_pressed_keys()
+
+        #Move the ship
         self.world.ship.move()
 
     def on_render(self, surface):
@@ -133,11 +169,12 @@ class Space_Scene(Scene):
         self.manager.draw_ui(surface)
 
 
-    def draw_mini_map(self, surface):
+    def draw_mini_map(self, surface: pygame.surface):
         #TO FIX
-        top = (450,300)
         radius_max = 140
-        PLANET_COLOR = Colors.BLACK
+        y = surface.get_height() - (radius_max * 2) - 50
+        top = (10,y)
+        PLANET_COLOR = Colors.GRAY
         ORBIT_COLOR = Colors.GRAY
         MINI_MAP_COLOR = Colors.DARK_GRAY
         PLAYER_COLOR = Colors.RED
@@ -146,7 +183,7 @@ class Space_Scene(Scene):
         
         size = (radius_max * 2 + 4 ,radius_max * 2 + 4)
         rect = pygame.Rect(top, size)
-        pygame.draw.rect(surface, MINI_MAP_COLOR, rect)
+        pygame.draw.rect(surface, MINI_MAP_COLOR, rect, width=2)
         
         current_ss = self.world.get_current_solar_system()
         center = rect.center
