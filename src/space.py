@@ -6,6 +6,8 @@ from pygame_framework.Scene import Scene
 from pygame_framework.Colors import Colors
 from pygame_framework.Util import Util
 
+from .camera import Camera
+
 class Space_Scene(Scene):
     def on_init(self, world):
         self.name = "Space"
@@ -26,8 +28,9 @@ class Space_Scene(Scene):
         
         #reference to the world
         self.world = world
+        self.map = None
         
-        self.show_mini_map = True
+        self.show_mini_map = False
         self.show_helper = True
 
         #Last step of intitialisation
@@ -37,8 +40,8 @@ class Space_Scene(Scene):
         button_width = 120
         button_height = 30
         spacer = 10
-        base_x = 220
-        base_y = 550
+        base_x = 700
+        base_y = 20
 
         #Temporary Dock
         x = base_x
@@ -96,46 +99,39 @@ class Space_Scene(Scene):
             elif event.key == pygame.K_r:
                 self.world.ship.reset()
             elif event.key == pygame.K_s:
-                self.world.ship.shoot()
-                
+                self.world.ship.shoot()          
         
     def on_loop(self):
         time_delta = pygame.time.Clock().tick()/1000.0
         self.manager.update(time_delta)
         
+        #Check if map exists
+        if self.map != self.world.character.solar_system:
+            self.map = self.world.character.solar_system
+            
+            #Proces Map
+            self.world.process_current_map()
+        
         self.world.ship.move()
 
     def on_render(self, surface):
+        #Background
         surface.fill(self.BACKGROUND)
 
-        #Draw Title on center surface x
-        #Util().draw_text_center_x(surface, self.title, self.title_font, Colors.BLACK, 15)
-
-        #Draw Map
-        self.draw_solar_system(surface)
+        #Draw The map & objects
+        self.world.draw_map(surface)
         
         #Draw Mini Map
         if self.show_mini_map:
             self.draw_mini_map(surface)
         
+        #Draw Text Helpers
         if self.show_helper:
             self.draw_helpers(surface)
-        
-        #Draw Other ships
-
-        #Draw my Ship
-        image = self.world.ship.image
-        rect = self.world.ship.rect
-        rect.center = surface.get_rect().center
-        surface.blit(image, rect)
 
         #Draw The UI
         self.manager.draw_ui(surface)
-    
-    def draw_solar_system(self, surface):
-        current_ss = self.world.get_current_solar_system()
-        for planet in current_ss["objects"]:
-            pass
+
 
     def draw_mini_map(self, surface):
         #TO FIX

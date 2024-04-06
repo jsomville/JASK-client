@@ -2,7 +2,8 @@
   "SolarSystems": [
     {
       "name": "Sol",
-      "type":"G",
+      "type": "G",
+      "sprite": "g0",
       "position": [
         -400,
         100
@@ -18,64 +19,111 @@
       ],
       "objects": [
         {
-          "name": "Sol",
-          "sprite": "star/g0",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "Mercury",
-          "sprite": "planet/mercury",
+          "type": "planet",
+          "sprite": "mercury",
           "distance": 289,
-          "period": 60
+          "period": 60,
+          "angle": 60,
+          "position": [
+            15874,
+            15980
+          ]
         },
         {
           "name": "Venus",
-          "sprite": "planet/venus",
+          "type": "planet",
+          "sprite": "venus",
           "distance": 533,
-          "period": 150
+          "period": 150,
+          "angle": 150,
+          "position": [
+            15268,
+            15996
+          ]
         },
         {
           "name": "Earth",
-          "sprite": "planet/earth",
+          "type": "planet",
+          "sprite": "earth",
           "distance": 965,
-          "period": 150
+          "period": 150,
+          "angle": 150,
+          "position": [
+            14894,
+            16212
+          ]
         },
         {
           "name": "Mars",
-          "sprite": "planet/mars",
+          "type": "planet",
+          "sprite": "mars",
           "distance": 1471,
-          "period": 687
+          "period": 687,
+          "angle": 327,
+          "position": [
+            16964,
+            14929
+          ]
         },
         {
           "name": "Jupiter",
-          "sprite": "planet/jupiter",
+          "type": "planet",
+          "sprite": "jupiter",
           "distance": 3339,
-          "period": 2348
+          "period": 2348,
+          "angle": 188,
+          "position": [
+            12423,
+            15265
+          ]
         },
         {
           "name": "Saturn",
-          "sprite": "planet/saturn",
+          "type": "planet",
+          "sprite": "saturn",
           "distance": 5562,
-          "period": 5048
+          "period": 5048,
+          "angle": 8,
+          "position": [
+            21238,
+            16504
+          ]
         },
         {
           "name": "Uranus",
-          "sprite": "planet/uranus",
+          "type": "planet",
+          "sprite": "uranus",
           "distance": 10373,
-          "period": 12858
+          "period": 12858,
+          "angle": 258,
+          "position": [
+            13573,
+            5584
+          ]
         },
         {
           "name": "Neptune",
-          "sprite": "planet/neptune",
+          "type": "planet",
+          "sprite": "neptune",
           "distance": 15730,
-          "period": 24012
+          "period": 24012,
+          "angle": 252,
+          "position": [
+            10869,
+            770
+          ]
         }
+      ],
+      "map_size": [
+        31460,
+        31460
       ]
     },
     {
       "name": "Alpha Centauri",
-      "type":"G",
+      "type": "G",
+      "sprite": "g3",
       "position": [
         -429,
         125
@@ -86,46 +134,75 @@
       ],
       "objects": [
         {
-          "name": "Alpha Centauri",
-          "sprite": "star/g3",
-          "distance": 38,
-          "period": 10
-        },
-        {
           "name": "",
-          "sprite": "planet/desert2",
+          "type": "planet",
+          "sprite": "desert2",
           "distance": 346,
-          "period": 74
+          "period": 74,
+          "angle": 74,
+          "position": [
+            4175,
+            4413
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/oberon",
+          "type": "planet",
+          "sprite": "oberon",
           "distance": 749,
-          "period": 237
+          "period": 237,
+          "angle": 237,
+          "position": [
+            3672,
+            3452
+          ]
         },
         {
-          "name": "",
-          "sprite": "planet/forest1",
+          "name": "Chiron",
+          "type": "planet",
+          "sprite": "forest1",
           "distance": 976,
-          "period": 353
+          "period": 353,
+          "angle": 353,
+          "position": [
+            5049,
+            3961
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/rock15-b",
+          "type": "planet",
+          "sprite": "rock15-b",
           "distance": 1718,
-          "period": 825
+          "period": 825,
+          "angle": 105,
+          "position": [
+            3635,
+            5739
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas13",
+          "type": "planet",
+          "sprite": "gas13",
           "distance": 4080,
-          "period": 3022
+          "period": 3022,
+          "angle": 142,
+          "position": [
+            865,
+            6592
+          ]
         }
+      ],
+      "map_size": [
+        8160,
+        8160
       ]
     },
     {
       "name": "Altair",
-      "type":"G",
+      "type": "G",
+      "sprite": "g5",
       "position": [
         -357,
         161
@@ -137,46 +214,75 @@
       ],
       "objects": [
         {
-          "name": "Altair",
-          "sprite": "star/g5",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "",
-          "sprite": "planet/water0",
+          "type": "planet",
+          "sprite": "water0",
           "distance": 242,
-          "period": 47
+          "period": 47,
+          "angle": 47,
+          "position": [
+            1425,
+            1437
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/desert4",
+          "type": "planet",
+          "sprite": "desert4",
           "distance": 468,
-          "period": 128
+          "period": 128,
+          "angle": 128,
+          "position": [
+            972,
+            1629
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/rock13-b",
+          "type": "planet",
+          "sprite": "rock13-b",
           "distance": 698,
-          "period": 234
+          "period": 234,
+          "angle": 234,
+          "position": [
+            850,
+            695
+          ]
         },
         {
-          "name": "",
-          "sprite": "planet/cloud8",
+          "name": "Shiver",
+          "type": "planet",
+          "sprite": "cloud8",
           "distance": 1260,
-          "period": 567
+          "period": 567,
+          "angle": 207,
+          "position": [
+            137,
+            688
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/europa",
+          "type": "planet",
+          "sprite": "europa",
           "distance": 223,
-          "period": 1329
+          "period": 1329,
+          "angle": 249,
+          "position": [
+            1180,
+            1052
+          ]
         }
+      ],
+      "map_size": [
+        2520,
+        2520
       ]
     },
     {
       "name": "Caph",
-      "type":"G",
+      "type": "G",
+      "sprite": "g3",
       "position": [
         -295,
         77
@@ -187,46 +293,75 @@
       ],
       "objects": [
         {
-          "name": "Caph",
-          "sprite": "star/g3",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "",
-          "sprite": "planet/desert0",
+          "type": "planet",
+          "sprite": "desert0",
           "distance": 160,
-          "period": 30
+          "period": 30,
+          "angle": 30,
+          "position": [
+            2573,
+            2514
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/lava3",
+          "type": "planet",
+          "sprite": "lava3",
           "distance": 479,
-          "period": 158
+          "period": 158,
+          "angle": 158,
+          "position": [
+            1990,
+            2613
+          ]
         },
         {
-          "name": "",
-          "sprite": "planet/forest2",
+          "name": "Reunion",
+          "type": "planet",
+          "sprite": "forest2",
           "distance": 885,
-          "period": 398
+          "period": 398,
+          "angle": 38,
+          "position": [
+            3131,
+            2979
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas6",
+          "type": "planet",
+          "sprite": "gas6",
           "distance": 1666,
-          "period": 1028
+          "period": 1028,
+          "angle": 308,
+          "position": [
+            3460,
+            1121
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas10",
+          "type": "planet",
+          "sprite": "gas10",
           "distance": 2434,
-          "period": 1816
+          "period": 1816,
+          "angle": 16,
+          "position": [
+            4774,
+            3105
+          ]
         }
+      ],
+      "map_size": [
+        4868,
+        4868
       ]
     },
     {
       "name": "Denebola",
-      "type":"K",
+      "type": "K",
+      "sprite": "k5",
       "position": [
         -478,
         70
@@ -237,46 +372,75 @@
       ],
       "objects": [
         {
-          "name": "Denebola",
-          "sprite": "star/k5",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "",
-          "sprite": "planet/cloud3-b",
+          "type": "planet",
+          "sprite": "cloud3-b",
           "distance": 360,
-          "period": 115
+          "period": 115,
+          "angle": 115,
+          "position": [
+            2775,
+            3253
+          ]
         },
         {
           "name": "Geyser",
-          "sprite": "planet/ice2",
+          "type": "planet",
+          "sprite": "ice2",
           "distance": 628,
-          "period": 266
+          "period": 266,
+          "angle": 266,
+          "position": [
+            2883,
+            2301
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/rock0-b",
+          "type": "planet",
+          "sprite": "rock0-b",
           "distance": 1051,
-          "period": 575
+          "period": 575,
+          "angle": 215,
+          "position": [
+            2066,
+            2324
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas1-b",
+          "type": "planet",
+          "sprite": "gas1-b",
           "distance": 1550,
-          "period": 1031
+          "period": 1031,
+          "angle": 311,
+          "position": [
+            3944,
+            1757
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/io-b",
+          "type": "planet",
+          "sprite": "io-b",
           "distance": 2927,
-          "period": 2677
+          "period": 2677,
+          "angle": 157,
+          "position": [
+            233,
+            4071
+          ]
         }
+      ],
+      "map_size": [
+        5854,
+        5854
       ]
     },
     {
       "name": "Sirius",
-      "type":"F",
+      "type": "F",
+      "sprite": "f5",
       "position": [
         -378,
         44
@@ -287,46 +451,75 @@
       ],
       "objects": [
         {
-          "name": "Sirius",
-          "sprite": "star/f5",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "",
-          "sprite": "planet/lava4",
+          "type": "planet",
+          "sprite": "lava4",
           "distance": 338,
-          "period": 57
+          "period": 57,
+          "angle": 57,
+          "position": [
+            2346,
+            2445
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/rock6-b",
+          "type": "planet",
+          "sprite": "rock6-b",
           "distance": 640,
-          "period": 150
+          "period": 150,
+          "angle": 150,
+          "position": [
+            1608,
+            2482
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/dust3",
+          "type": "planet",
+          "sprite": "dust3",
           "distance": 1158,
-          "period": 366
+          "period": 366,
+          "angle": 6,
+          "position": [
+            3314,
+            2283
+          ]
         },
         {
-          "name": "",
-          "sprite": "planet/dust4",
+          "name": "Relic",
+          "type": "planet",
+          "sprite": "dust4",
           "distance": 1807,
-          "period": 714
+          "period": 714,
+          "angle": 354,
+          "position": [
+            3959,
+            1973
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/tethys",
+          "type": "planet",
+          "sprite": "tethys",
           "distance": 2162,
-          "period": 935
+          "period": 935,
+          "angle": 215,
+          "position": [
+            391,
+            922
+          ]
         }
+      ],
+      "map_size": [
+        4324,
+        4324
       ]
     },
     {
       "name": "Vega",
-      "type":"G",
+      "type": "G",
+      "sprite": "g0",
       "position": [
         -402,
         182
@@ -338,35 +531,57 @@
       ],
       "objects": [
         {
-          "name": "Vega",
-          "sprite": "star/g0",
-          "distance": 0,
-          "period": 0
-        },
-        {
           "name": "",
-          "sprite": "planet/rock12",
+          "type": "planet",
+          "sprite": "rock12",
           "distance": 314,
-          "period": 58
+          "period": 58,
+          "angle": 58,
+          "position": [
+            3147,
+            3247
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas12-b",
+          "type": "planet",
+          "sprite": "gas12-b",
           "distance": 714,
-          "period": 200
+          "period": 200,
+          "angle": 200,
+          "position": [
+            2310,
+            2737
+          ]
         },
         {
-          "name": "",
-          "sprite": "planet/cloud3",
+          "name": "Silver",
+          "type": "planet",
+          "sprite": "cloud3",
           "distance": 1359,
-          "period": 526
+          "period": 526,
+          "angle": 166,
+          "position": [
+            1662,
+            3310
+          ]
         },
         {
           "name": "",
-          "sprite": "planet/gas8",
+          "type": "planet",
+          "sprite": "gas8",
           "distance": 2981,
-          "period": 1710
+          "period": 1710,
+          "angle": 270,
+          "position": [
+            2981,
+            0
+          ]
         }
+      ],
+      "map_size": [
+        5962,
+        5962
       ]
     }
   ]

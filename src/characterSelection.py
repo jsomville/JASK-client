@@ -33,11 +33,11 @@ class Character_Selection_Scene(Scene):
         button_width = 120
         button_height = 30
         button_x = 500
-        container_width = 600
+        container_width = 800
         container_height = 350
         spacer_y = 10
-        base_y  = 60
-        base_x = 100
+        base_y  = 100
+        base_x = 200
 
         #New Button
         x = base_x + container_width - button_width

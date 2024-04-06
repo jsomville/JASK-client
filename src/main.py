@@ -19,31 +19,30 @@ from .world import World
 
 class app:
     def __init__(self):
-        self.windowWidth = 800
-        self.windowHeight = 600
+        self.windowWidth = 1200
+        self.windowHeight = 900
         self.FPS = 60
 
         self.scenes = dict()
         self.active_scene = None
 
         self.title = "JASK - Client"
-        
-        self.world = World()
     
     def on_init(self):
 
         #pygame initialisation
         pygame.init()
-        
         self._display_surf = pygame.display.set_mode([self.windowWidth, self.windowHeight])
-        self.frame_per_sec = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
         #Set the window caption
         icon = pygame.image.load('src/data/images/icon_48x48.png').convert_alpha()
         pygame.display.set_caption(self.title)
         pygame.display.set_icon(icon)
-
         self.SCREEN_SIZE = (self.windowWidth, self.windowHeight)
+
+        #Init Ressource Data
+        self.world = World()
 
         #********
         # Declare scenes
@@ -160,6 +159,9 @@ class app:
 
         #Main Loop
         while (self._running):
+            #Ensure FPS is respected (try at least)
+            self.clock.tick(self.FPS)
+            
             #Handle Events
             for event in pygame.event.get():
                 self.on_event(event)
@@ -169,9 +171,6 @@ class app:
 
             #Render code
             self.on_render()
-
-            #Ensure FPS is respected (try at least)
-            self.frame_per_sec.tick(self.FPS)
         
         #On cleanup
         self.on_cleanup()

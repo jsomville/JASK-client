@@ -30,13 +30,13 @@ class Station_Scene(Scene):
     def create_gui(self):
         service_button_width = 200
         service_button_height = 30
-        container_width = 650
+        container_width = 800
         image_height = 150
         text_height = 150
         spacer_y = 10
         spacer_x = 25
-        base_y  = 30
-        base_x = 50
+        base_y  = 200
+        base_x = 200
 
         #New Button
         x = base_x

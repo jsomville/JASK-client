@@ -3,24 +3,30 @@ import math
 
 class Ship(pygame.sprite.Sprite):
     def __init__(self, image):
+        
         self.pos = (0,0) #Default Position relative to screen
         
         self.speed = 0
-        self.angle = 0
+        self.angle = -90
+        
         self.original_image = image
         self.update_image()
         self.rect.center = self.pos
         
         #Ship Specs
-        self.max_speed = 20
-        self.speed_increment = 2
+        self.max_speed = 15
+        self.speed_increment = 1
         self.turn_increment = 5
         self.shield = 100
         
         #Player Position relative to map center
         self.position = (0,0)
         self.update_position()
-
+        
+        
+    def set_position(self, pos):
+        self.pos = pos
+        
         
     def turn_left(self):
         self.turn(self.turn_increment)
@@ -75,7 +81,6 @@ class Ship(pygame.sprite.Sprite):
 
 
     def move(self):
-        pos = self.position
         rad_angle = math.radians(self.angle)
         
         x = self.position[0] - self.speed * math.cos(rad_angle)
@@ -87,7 +92,9 @@ class Ship(pygame.sprite.Sprite):
     
     
     def update_position(self):
-        dist_from_sun = math.dist((0,0), self.position)
+        center = (15730, 15730)
+        
+        dist_from_sun = math.dist(center, self.position)
         angle = 0
         if dist_from_sun > 0:
             rad_angle = math.atan2(self.position[1], self.position[0])

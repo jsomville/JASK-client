@@ -32,8 +32,10 @@ class Login_Scene(Scene):
 
     def create_gui(self):
 
-        x = 200
-        y = 120
+        base_x = 400
+        base_y = 300
+        x = base_x
+        y = base_y
         textbox_width = 220
         default_height = 35
         label_width = 80
@@ -62,8 +64,8 @@ class Login_Scene(Scene):
         button_width = 120
         button_height = 30
 
-        button_y = 450
-        x = 350
+        button_y = base_y + 120
+        x = base_x + 100
         rect = pygame.Rect((x,button_y), (button_width, button_height))
         text = "Cancel"
         id = "#btn_cancel"

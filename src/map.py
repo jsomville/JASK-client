@@ -27,6 +27,7 @@ class Map_Scene(Scene):
 
         #reference to the world
         self.world = world
+        print("on init")
 
         #Last step of intitialisation
         self.inited = True
@@ -56,7 +57,7 @@ class Map_Scene(Scene):
         #Draw Star systems
         for ss in self.world.solarSystems:
             #Draw Star
-            color = self.get_star_Color(ss["type"])
+            color = self.world.get_star_Color(ss["type"])
             radius = 5
             center = ss["screenPosition"]
             pygame.draw.circle(surface, color, center, radius)
@@ -67,24 +68,7 @@ class Map_Scene(Scene):
             text_rect = img.get_rect(center = (center[0], center[1] + 15))
             surface.blit(img, text_rect)
           
-    def get_star_Color(self, type):
-        color = Colors.BLACK
-        if type == "O":
-            color = Colors.PURPLE
-        elif type == "B":
-            color = Colors.BLUE
-        elif type == "A":
-            color = Colors.WHITE
-        elif type == "G":
-            color = Colors.YELLOW
-        elif type == "F":
-            color = Colors.LIME
-        elif type == "K":
-            color = Colors.ORANGE
-        elif type == "M":
-            color = Colors.RED
-            
-        return color
+    
         
     def on_event(self, event):
 
