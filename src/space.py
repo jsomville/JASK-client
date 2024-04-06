@@ -8,7 +8,6 @@ from pygame_framework.Util import Util
 
 from .camera import Camera
 
-
 PLANET_COLOR = Colors.GRAY
 ORBIT_COLOR = Colors.GRAY
 MINI_MAP_COLOR = Colors.DARK_GRAY
@@ -225,7 +224,6 @@ class Space_Scene(Scene):
         rel_radius = self.world.ship.position_radius / current_ss["max_distance"]
         radius = rel_radius * radius_max
         angle = self.world.ship.position_angle
-        #rad_angle = angle
         rad_angle = math.radians(angle)
         x = center[0] + radius * math.cos(rad_angle) + PLAYER_RADIUS
         y = center[1] + radius * math.sin(rad_angle) + PLAYER_RADIUS

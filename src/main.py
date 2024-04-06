@@ -82,6 +82,7 @@ class app:
         new_character_Scene = New_character_Scene()
         self.add_scene(new_character_Scene)
 
+
         self.active_scene = self.scenes["Login"]
         #******
 
