@@ -8,6 +8,13 @@ from pygame_framework.Util import Util
 
 from .camera import Camera
 
+
+PLANET_COLOR = Colors.GRAY
+ORBIT_COLOR = Colors.GRAY
+MINI_MAP_COLOR = Colors.DARK_GRAY
+PLAYER_COLOR = Colors.RED
+PLANET_RADIUS = 2
+PLAYER_RADIUS = 2
 class Space_Scene(Scene):
     def on_init(self, world):
         self.name = "Space"
@@ -194,13 +201,7 @@ class Space_Scene(Scene):
         radius_max = 140
         y = surface.get_height() - (radius_max * 2) - 50
         top = (10,y)
-        PLANET_COLOR = Colors.GRAY
-        ORBIT_COLOR = Colors.GRAY
-        MINI_MAP_COLOR = Colors.DARK_GRAY
-        PLAYER_COLOR = Colors.RED
-        PLANET_RADIUS = 2
-        PLAYER_RADIUS = 2
-        
+
         size = (radius_max * 2 + 4 ,radius_max * 2 + 4)
         rect = pygame.Rect(top, size)
         pygame.draw.rect(surface, MINI_MAP_COLOR, rect, width=2)
@@ -224,9 +225,10 @@ class Space_Scene(Scene):
         rel_radius = self.world.ship.position_radius / current_ss["max_distance"]
         radius = rel_radius * radius_max
         angle = self.world.ship.position_angle
+        #rad_angle = angle
         rad_angle = math.radians(angle)
-        x = center[0] + radius * math.cos(rad_angle) - PLAYER_RADIUS
-        y = center[1] + radius * math.sin(rad_angle) - PLAYER_RADIUS
+        x = center[0] + radius * math.cos(rad_angle) + PLAYER_RADIUS
+        y = center[1] + radius * math.sin(rad_angle) + PLAYER_RADIUS
         pygame.draw.circle(surface, PLAYER_COLOR, (x,y), PLAYER_RADIUS)
     
     def draw_radar(self, surface):

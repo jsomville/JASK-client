@@ -95,14 +95,14 @@ class Ship(pygame.sprite.Sprite):
     
     
     def update_position(self):
-        #TO FIX
-        center = self.map_center
-        
-        dist_from_sun = math.dist(center, self.position)
+        dist_from_sun = math.dist(self.map_center, self.position)
         angle = 0
         if dist_from_sun > 0:
-            rad_angle = math.atan2(self.position[1], self.position[0])
-            angle = round(math.degrees(rad_angle))
+            dx = self.position[0] - self.map_center[0]
+            dy = self.position[1] - self.map_center[1]
+            rad_angle = math.atan2(dy, dx)
+
+            angle = math.degrees(rad_angle)
             
         self.position_angle = angle
         self.position_radius = dist_from_sun
