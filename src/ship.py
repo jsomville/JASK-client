@@ -16,7 +16,7 @@ class Ship(pygame.sprite.Sprite):
         #Ship Specs
         self.max_speed = 15
         self.speed_increment = 1
-        self.turn_increment = 1
+        self.turn_increment = 3
         self.shield = 100
         
         #TO FIX
